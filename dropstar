@@ -2,6 +2,7 @@
 import time
 import os
 import random
+import msvcrt
 list_num = [[0,0,0,0,0,0],
             [0,0,0,0,0,0],
             [0,0,0,0,0,0],
@@ -11,7 +12,12 @@ list_num = [[0,0,0,0,0,0],
             [0,0,0,0,0,0],
             [0,0,0,0,0,0]]
 
-current_poop = []          
+current_poop = [] 
+ch_temp = [7,5]
+
+#def ch_temp_move():   -> 만드는중
+#    list_num[ch_temp[0]][ch_temp[1]] = 2
+    
 def respown_poop():
     rand_num = random.randint(0,5)
     list_num[0][rand_num] = 1
@@ -45,6 +51,14 @@ def display():
         print("")
 
 while True:
+    if msvcrt.kbhit():
+        key = ord(msvcrt.getch())
+        if key == 97:           # a
+            print(key)
+        elif key == 100:       # d
+            print(key)
+        else:
+            pass
     respown_poop()
     os.system("cls")
     display()
@@ -52,5 +66,3 @@ while True:
     time.sleep(0.3)
     
 
-
- 
