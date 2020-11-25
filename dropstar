@@ -14,9 +14,10 @@ list_num = [[0,0,0,0,0,0],
 
 current_poop = [] 
 ch_temp = [7,5]
-
-#def ch_temp_move():   -> 만드는중
-#    list_num[ch_temp[0]][ch_temp[1]] = 2
+score = 0
+high_score = 0
+time_temp = 0.25
+list_num[ch_temp[0]][ch_temp[1]] = 2
     
 def respown_poop():
     rand_num = random.randint(0,5)
@@ -28,6 +29,7 @@ def del_star():
         if i[0] > 6:
             current_poop.remove(i)   
             list_num[i[0]][i[1]] = 0
+
 def move():
     del_star()
     #print(current_poop)
@@ -38,9 +40,6 @@ def move():
     for i in current_poop:
         list_num[i[0]][i[1]] = 1
     
-    
-
-    
 def display():
     for i in list_num:
         for j in i:
@@ -48,21 +47,48 @@ def display():
                 print('.',end=" ")
             elif j == 1:
                 print('*',end=" ")
+            elif j == 2:
+            	print('&',end=" ")
         print("")
-
+    print(high_score)
+        
+def left_move():
+	list_num[ch_temp[0]][ch_temp[1]] = 0
+	ch_temp[1] = ch_temp[1]-1
+	list_num[ch_temp[0]][ch_temp[1]] = 2
+	
+def right_move():
+	list_num[ch_temp[0]][ch_temp[1]] = 0
+	ch_temp[1] = ch_temp[1]+1
+	list_num[ch_temp[0]][ch_temp[1]] = 2
+	
+def hit():
+	for i in current_poop:
+		if i[0] == ch_temp[0] and i[1] == ch_temp[1]:
+			print("gameover")
+			return True
+	
 while True:
+
     if msvcrt.kbhit():
         key = ord(msvcrt.getch())
         if key == 97:           # a
-            print(key)
+            left_move()
         elif key == 100:       # d
-            print(key)
+            right_move()
         else:
             pass
-    respown_poop()
-    os.system("cls")
-    display()
-    move()
-    time.sleep(0.3)
-    
 
+    respown_poop()     
+    if hit():
+    	break
+    move()
+    os.system("cls")  
+    display()
+    time.sleep(time_temp)
+    score += 1
+    high_score += 1
+    if score > 10:
+    	time_temp -= 0.01
+    	score = 0
+    
