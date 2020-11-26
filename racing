@@ -1,0 +1,68 @@
+import random
+import os
+import msvcrt
+import time
+# 11 x 10
+back_list = [[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0]]
+
+
+
+current_star = []
+star_y = 0
+star_x = 0
+star_x_2 = 4
+star_y_2 = 0
+
+def star_re():
+	global star_x,star_y,star_x_2,star_y_2
+	rand_num = random.randint(0,1)
+	if star_x != 0 and rand_num == 0:
+		star_x -= 1
+		star_x_2 -= 1
+		current_star.append([star_y,star_x])
+		current_star.append([star_y_2,star_x_2])
+	elif star_x_2 != 9 and rand_num == 1:
+		star_x += 1
+		star_x_2 += 1
+		current_star.append([star_y,star_x])
+		current_star.append([star_y_2,star_x_2])
+	else:
+		pass
+
+def star_move():
+	for i in range(0,len(current_star)):
+		current_star[i][0] += 1
+		if i[0] > 10:
+			current_star.remove(i)
+
+def star_display():
+	for i in current_star:
+		back_list[i[0]][i[1]] = 1
+
+def display():
+	for i in back_list:
+		for j in i:
+			if j == 0:
+				print('.',end = " ")
+			elif j == 1:
+				print('*',end = " ")
+			else:
+				pass
+		print("")
+
+while True:
+	star_re()
+	star_display()
+	display()
+	star_move()
+	time.sleep(0.5)
