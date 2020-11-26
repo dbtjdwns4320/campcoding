@@ -1,4 +1,5 @@
-from msvcrt import getch
+import msvcrt
 while True:
-    key = getch()
+    if msvcrt.kbhit(
+        key = msvcrt.getch()
     print(key)
