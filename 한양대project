@@ -48,8 +48,12 @@ class Pitcher:
             self.Team_name[temp_Team_name] = temp_name
     
     def Display_all_pitcher(self):
-        team_key = self.Team_name.keys()
-        print(self.Team_name[team_key].sort())
+        for i in self.Team_name.keys():
+        		print(sorted(self.Team_name[i].items() ,key=lambda x:x[1][6]))
+        	
+        
+        
+      
         
         
 
@@ -88,7 +92,7 @@ def display_menu():
 
 while True:
     A = display_menu()
-    if "1" <= A and A <= "9":
+    if 1 <= A and A <= 9:
         if A == 1:
             temp = Pitcher()
             temp.Team()
