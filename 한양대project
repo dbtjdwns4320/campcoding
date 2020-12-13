@@ -25,7 +25,7 @@ class Pitcher:
             A = self.Team_name[team][name][5]
             B = self.Team_name[team][name][2]
             ERA = (A/B)*9
-            self.Team_name[team][name][6] += ERA)
+            self.Team_name[team][name][6] += ERA
         except:
             print("다시 입력")
 
@@ -46,6 +46,11 @@ class Pitcher:
                 temp_name.setdefault(temp_asd)
                 temp_name[temp_asd] = [0,0,0,0,0,0,0]
             self.Team_name[temp_Team_name] = temp_name
+    
+    def Display_all_pitcher(self):
+        team_key = self.Team_name.keys()
+        print(team_key)
+        
 
 # 투수별로 방어율 순위를 계산해주는 함수.
 # 최종적으로 방어율에 따라 print했을 때 순위가 메겨짐.
