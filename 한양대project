@@ -15,6 +15,7 @@ class Pitcher:
     # Win = 승리 / Lose = 패배 / Innings = 이닝 / Strikeout = 탈삼진 / Baseobballs = 볼넷 / Losspoint = 실점
     # 매 경기마다 기록이 누적되어야 함.
     def Update_stats(self,team,name):
+        print(self.Team_name)
         try:
             self.Team_name[team][name][0] += int(input("Win? (1/0) : "))
             self.Team_name[team][name][1] += int(input("Lose? (1/0) : "))
@@ -48,12 +49,24 @@ class Pitcher:
             self.Team_name[temp_Team_name] = temp_name
     
     def Display_all_pitcher(self):
+        temp = []
         for i in self.Team_name.keys():
-        		self.Team_name[i] = sorted(self.Team_name[i].items() ,key=lambda x:x[1][6]),reverse=True)
-        for i in self.Team_name.keys():
-            print("팀:" + i)
-            
+        		for j in sorted(self.Team_name[i].items() ,key=lambda x:x[1][6],reverse=True):
+        			print(self.Team_name[i])
         
+#        for i in self.Team_name.keys():
+#            for j in self.Team_name[i]:
+#            	print("팀 이름:", i)
+#            	print("투수:",j[0])
+#            	print("win:",j[1][0])
+ #           	print("Lose:",j[1][1])
+#            	print("innings:",j[1][2])
+#            	print("k:",j[1][3])
+#            	print("BB:",j[1][4])
+#            	print("losspoints:",j[1][5])
+#            	print("ERA:",j[1][6])
+#            	print("\n")
+       
         
       
         
@@ -103,6 +116,7 @@ while True:
             team = input("팀 명을 입력하시오: ")
             name = input("투수의 이름을 입력하시오: ")
             temp.Update_stats(team,name)
+            
         elif A == 3:
             temp.Display_all_pitcher()
             
