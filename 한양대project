@@ -49,8 +49,10 @@ class Pitcher:
     
     def Display_all_pitcher(self):
         for i in self.Team_name.keys():
-        		print(sorted(self.Team_name[i].items() ,key=lambda x:x[1][6]))
-        	
+        		self.Team_name[i] = sorted(self.Team_name[i].items() ,key=lambda x:x[1][6]),reverse=True)
+        for i in self.Team_name.keys():
+            print("팀:" + i)
+            
         
         
       
