@@ -1,59 +1,54 @@
 #class Pitcher선언
 class Pitcher:
-    def __init__(self, team, name):
-        self.team = team
-        self.name = name
-        self.win = 0
-        self.lose = 0
-        self.innings = 0
-        self.strikeout = 0
-        self.baseonballs = 0
-        self.losspoint = 0
-        self.ERA = 0
+    def __init__(self):
+        self.Team_name = {}
 
-    def __str__(self):
-        msg = "Team: " + str(self.team) +"\n"
-        msg += "Name" + str(self.name) + "\n"
-        msg += "Win : " + str(self.win) + " / " + "Lose: " + str(self.lose) + " / " + "ERA : " + str(self.ERA) + "\n"
-        msg += "Innings: " + str(self.innings) + " / " + "K: " + str(self.strikeout) + " / " + "BB: " + str(self.baseonballs)
-        msg += "Loss points: " + str(self.losspoint) + "\n"
-        return msg
+    #def __str__(self):
+    #    msg = "Team: " + str(self.team) +"\n"
+    #    msg += "Name" + str(self.name) + "\n"
+    #    msg += "Win : " + str(self.win) + " / " + "Lose: " + str(self.lose) + " / " + "ERA : " + str(self.ERA) + "\n"
+    #    msg += "Innings: " + str(self.innings) + " / " + "K: " + str(self.strikeout) + " / " + "BB: " + str(self.baseonballs)
+    #    msg += "Loss points: " + str(self.losspoint) + "\n"
+    #    return msg
 
     # 매 경기마다 투수의 기록을 입력
     # Win = 승리 / Lose = 패배 / Innings = 이닝 / Strikeout = 탈삼진 / Baseobballs = 볼넷 / Losspoint = 실점
     # 매 경기마다 기록이 누적되어야 함.
-    def Update_stats(self):
-        self.win += int(input("Win? (1/0) : "))
-        self.lose += int(input("Lose? (1/0) : "))
-        self.innings += float(input(("Innings? : ")))
-        self.strikeout += int(input("K? : "))
-        self.baseonballs += int(input("BB? : "))
-        self.losspoint += int(input("Losspoints? : "))
+    def Update_stats(self,team,name):
+        print(self.Team_name[team][name])
+        try:
+            
+            self.Team_name[team][name][0] += int(input("Win? (1/0) : "))
+            self.Team_name[team][name][1] += int(input("Lose? (1/0) : "))
+            self.Team_name[team][name][2] += float(input(("Innings? : ")))
+            self.Team_name[team][name][3] += int(input("K? : "))
+            self.Team_name[team][name][4] += int(input("BB? : "))
+            self.Team_name[team][name][5] += int(input("Losspoints? : "))
+        except:
+            print("다시 입력")
 
 # Team 이라는 dictionary를 선언
 # Key 값은 팀 이름, value 값은 팀에 소속되어 있는 선수 이름.
-def Team():
-    Team_name = {}
+    def Team(self):
+        N = int(input("몇 팀이 있나?: "))
+        M = int(input("투수는 몇 명이 있나?: "))
 
-    N = int(input("몇 팀이 있나?: "))
-    M = int(input("투수는 몇 명이 있나?: "))
-
-    for i in range(N):
-        temp_Team_name = input("팀 이름을 입력하시오: ")
-        temp_Player_name = []
-
-        for k in range(M):
-            temp_Player_name.append(input("투수 이름을 입력하시오: "))
-
-        Team_name[temp_Team_name] = temp_Player_name
+        for i in range(N):
+            temp_Team_name = input("팀 이름을 입력하시오: ")
+            self.Team_name.setdefault(temp_Team_name)
+            temp_name = {}
+            for k in range(M):
+                temp_asd = input("투수 이름을 입력하시오: ")
+                temp_name.setdefault(temp_asd)
+                temp_name[temp_asd] = [0,0,0,0,0,0,0]
+            self.Team_name[temp_Team_name] = temp_name
+        print(self.Team_name['qqq\r'])
 
 # 투수별로 방어율 순위를 계산해주는 함수.
 # 최종적으로 방어율에 따라 print했을 때 순위가 메겨짐.
 # 방어율이 같은 경우 투수의 승리 횟수에 따라 순위 결정.
-def Update_Era_ranking(self):
-        A = self.losspoint
-        B = self.innings
-        ERA = (A/B) * 9
+#def Update_Era_ranking(self):
+      
 
 # Menu를 구성하는 함수.
 # (1)번 동작 시 투수의 소속 팀과 이름을 입력해 객체를 생성함.
@@ -88,13 +83,13 @@ while True:
         a = int(A)
 
         if int(A) == 1:
-            Team()
+            temp = Pitcher()
+            temp.Team()
 
         elif int(A) == 2:
             team = input("팀 명을 입력하시오: ")
             name = input("투수의 이름을 입력하시오: ")
-            temp = Pitcher(team, name)
-            temp.Update_stats()
+            temp.Update_stats(team,name)
             print(temp)
 
         elif int(A) == 4:
@@ -116,7 +111,3 @@ while True:
 
     else :
         print("잘못 입력했습니다. 숫자를 다시 입력하세요 (1~6).")
-
-
-
-
