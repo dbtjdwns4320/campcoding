@@ -16,26 +16,24 @@ class Pitcher:
     # Win = 승리 / Lose = 패배 / Innings = 이닝 / Strikeout = 탈삼진 / Baseobballs = 볼넷 / Losspoint = 실점
     # 매 경기마다 기록이 누적되어야 함.
     def Update_stats(self,team,name):
-        print(self.Team_name)
         flag = 0
         for i in self.Team_name[Team]:
-            print(i)
-    #        if i == name:
-    #            flag = 1
-              
-    #    if flag:
-    #        self.Team_name[team][name][0] += int(input("Win? (1/0) : "))
-    #        self.Team_name[team][name][1] += int(input("Lose? (1/0) : "))
-    #        self.Team_name[team][name][2] += float(input(("Innings? : ")))
-    #        self.Team_name[team][name][3] += int(input("K? : "))
-    #        self.Team_name[team][name][4] += int(input("BB? : "))
-    #        self.Team_name[team][name][5] += int(input("Losspoints? : "))
-    #        A = self.Team_name[team][name][5]
-    #        B = self.Team_name[team][name][2]
-    #        ERA = (A/B)*9
-    #        self.Team_name[team][name][6] += ERA
-    #    except:
-    #        print("다시 입력")
+            if i == name:
+                flag = 1
+                
+        if flag:
+            temp = []
+            temp.append(int(input("Win? (1/0) : ")))
+            temp.append(int(input("Lose? (1/0) : "))
+            B = float(input(("Innings? : "))
+            temp.append(B)
+            temp.append(int(input("K? : "))
+            temp.append(int(input("BB? : "))
+            A = int(input("Losspoints? : ")
+            temp.append(A)
+            temp.append((A/B)*9)
+            self.people_name[name] = temp
+        print(self.poeple_name)
 
 # Team 이라는 dictionary를 선언
 # Key 값은 팀 이름, value 값은 팀에 소속되어 있는 선수 이름.
