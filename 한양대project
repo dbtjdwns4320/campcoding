@@ -14,18 +14,20 @@ class Pitcher:
                 flag = 1
         
         if flag:
-            temp = self.people_name[name]
-            temp[0] += int(input("Win? (1/0) : "))
-            temp[1] = int(input("Lose? (1/0) : "))
-            B = float(input(("Innings? : ")))
-            temp[2] += B
-            temp[3] += int(input("K? : "))
-            temp[4] += int(input("BB? : "))
-            A = int(input("Losspoints? : "))
-            temp[5] += A
-            temp[6] += (temp[2]/temp[5])*9
-            self.people_name[name] = temp
-            print(self.people_name)
+            try:
+                temp = self.people_name[name]
+                temp[0] += int(input("Win? (1/0) : "))
+                temp[1] += int(input("Lose? (1/0) : "))
+                B = float(input(("Innings? : ")))
+                temp[2] += B
+                temp[3] += int(input("K? : "))
+                temp[4] += int(input("BB? : "))
+                A = int(input("Losspoints? : "))
+                temp[5] += A
+                temp[6] += (temp[2]/temp[5])*9
+                self.people_name[name] = temp
+            except:
+                print("다시입력")
         else:
             print("다시입력")
 
@@ -94,7 +96,7 @@ class Pitcher:
         else:
             print("다시입력")
     
-    def Update_stats(self,name):
+    def Modify_a_pitcher(self,name):
         try:
             temp = []
             temp.append(int(input("Win? : ")))
@@ -173,7 +175,8 @@ while True:
 
         elif A == 6:
             print("투수의 정보를 수정합니다.")
-            input("수정하고 싶은 투수의 이름을 입력하시오: ")
+            name = input("수정하고 싶은 투수의 이름을 입력하시오: ")
+            Modify_a_pitcher(self,name)
 
         elif A > 7:
             print("잘못 입력했습니다. 숫자를 다시 입력하세요 (1~6).")
